@@ -11,20 +11,23 @@ If you have any feedback for our repositories or want to join please head over t
 - A C++ 17+ Compiler (Only if you chose to not update the CMake)
 
 ### Download and Setup
-Ensure you have git client installed, we will be using git from the command line in this example. 
+Ensure you have a git client installed, we will be using git from the command line in this example. 
 
-Navigate to the directory you will clone too.
+Navigate to the directory you will want to clone into.
 ```
 git clone https://github.com/MurdochITSociety/LuaAndLuaBridgeTemplate.git
 cd LuaAndLuaBridgeTemplate
 ```
-This example uses submodules and compiles its external liberies from source. Since we are using submodules we will need to retrieve them.
+This example uses submodules for its external liberies and compiles them from source. Since we are using submodules we will need to retrieve them with the following command.
 ```
 git submodule update --init --recursive --depth 1
 ```
+* init: initialises the submodule.
+* recursive: This is required because the lua submodule also contains another submodule that is required.
+* depth(X): Shallow clones with a depth of X.
 
 #### A Simple trick
-For the most simple way of being able to modify lua scripts with out having to copy them around it is advised that you edit the root CMakeLists.txt and modify the following...
+For the simpliest way of being able to modify lua scripts with out having to copy them around when you build it is advised that you edit the root CMakeLists.txt and modify the following...
 ```
 option(CopyResources "CopyResources" OFF)
 ````
@@ -32,14 +35,14 @@ to...
 ```
 option(CopyResources "CopyResources" ON)
 ```
-This will instead create a symlink instead of a copying. However on Windows you will either need to turn developer mode on in Windows or run your IDE or command prompt with administrator privilages.
+This will instead create a symlink instead of a copying them every build. However on Windows you will either need to turn [developer mode on](https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development) or run your IDE / command prompt with administrator privilages.
 
 ### Building using CMake
 #### Visual Studio 2019
 To open this in VS2019 do the following...
 1. Open Visual Studio 2019.
 1. If a dialog prompts to open a file/project click "Continue with out project" in the bottom right.
-1. Click File on the toolbar.
+1. Click File on the toolbar in the top left.
 1. Click Open.
 1. Click Open CMake
 1. Navigate to LuaAndLuaBridgeTemplate and open CMakeLists.txt
