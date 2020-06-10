@@ -29,11 +29,11 @@ git submodule update --init --recursive --depth 1
 #### A Simple trick
 For the simpliest way of being able to modify lua scripts with out having to copy them around when you build it is advised that you edit the root CMakeLists.txt and modify the following...
 ```
-option(CopyResources "CopyResources" OFF)
+option(CopyResources "CopyResources" ON)
 ````
 to...
 ```
-option(CopyResources "CopyResources" ON)
+option(CopyResources "CopyResources" OFF)
 ```
 This will instead create a symlink instead of a copying them every build. However on Windows you will either need to turn [developer mode on](https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development) or run your IDE / command prompt with administrator privilages.
 
