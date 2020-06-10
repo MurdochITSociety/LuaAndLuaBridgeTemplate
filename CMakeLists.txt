@@ -65,14 +65,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE lua LuaBridge)
 # Symlink or copy the resources to the binary location.
 # To enable go back to the top of this file and turn on.
 # Keep in mind on windows you will need to run in adminsiter mode.
-if (NOT DisablePostBuild)
-    if (NOT CopyResources)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E create_symlink
-                ${CMAKE_SOURCE_DIR}/scripts $<TARGET_FILE_DIR:${PROJECT_NAME}>/scripts)
-    else()
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                ${CMAKE_SOURCE_DIR}/scripts $<TARGET_FILE_DIR:${PROJECT_NAME}>/scripts)
-    endif()
+
+if (NOT CopyResources)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E create_symlink
+            ${CMAKE_SOURCE_DIR}/scripts $<TARGET_FILE_DIR:${PROJECT_NAME}>/scripts)
+else()
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/scripts $<TARGET_FILE_DIR:${PROJECT_NAME}>/scripts)
 endif()
+
